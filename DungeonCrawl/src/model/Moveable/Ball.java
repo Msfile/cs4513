@@ -7,9 +7,11 @@ import java.awt.image.BufferedImage;
 import model.Direction;
 import model.GameObject;
 import model.Immoveable.Tile.FakeWall;
+import model.Immoveable.Tile.Ice;
+import model.Immoveable.Tile.Spawner;
 import model.Immoveable.Tile.ToggleWall;
 import model.Immoveable.Tile.Wall;
-import model.Immoveable.Tile.Button;
+import model.Immoveable.Tile.Water;
 
 public class Ball extends Monster {
 
@@ -60,9 +62,6 @@ public class Ball extends Monster {
     public void render(Graphics2D g) {
         g.drawImage(ballMoves.getImage(), (int) super.x, (int) super.y, 32, 32,
                 null);
-        //Draw Collision Box
-        //g.setColor(Color.blue);
-        //g.draw(this.getCollisionBox());
     }
 
     @Override
@@ -86,20 +85,15 @@ public class Ball extends Monster {
     }
     
     @Override
-    public void noMove() {
-        x = dx;
-        y = dy;
-        this.turnAround();
-    }
-
-    @Override
     public void collide(GameObject O) {
         super.collide(O);
-        
-        if(!(O instanceof ToggleWall)){
-            if(O instanceof Wall || O instanceof FakeWall){
+        if (O instanceof Wall || O instanceof FakeWall) {
+            if (!(O instanceof ToggleWall)) {
                 this.noMove();
+                this.turnAround();
             }
-        }               
+
+
+        }
     }
 }
