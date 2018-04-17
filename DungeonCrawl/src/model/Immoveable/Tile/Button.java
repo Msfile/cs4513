@@ -73,10 +73,6 @@ public class Button extends Tile implements Collidable {
                 image = buttonImgs[3];
         }
         g.drawImage(image, (int) super.x, (int) super.y, (int) super.WIDTH, (int) super.HEIGHT, null);
-
-        //Draw Collision Box
-        g.setColor(Color.blue);
-        g.draw(this.getCollisionBox());
     }
 
     public ButtonType getType() {
